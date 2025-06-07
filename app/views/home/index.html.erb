@@ -2,9 +2,9 @@
   <h1 class="font-bold text-7xl text-blue-200">Spotify-Rails</h1>
   <p class="text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-green-500 via-30% to-yellow-500 mt-2">The new best music streaming platform that pays fairly!</p>
   <div class="h-36 flex items-center justify-center">
-    
+    <%= link_to music_path do %>
       <%= image_tag "play.png", class: "w-20 object-cover hover:bg-pink-500 rounded-full overflow-hidden" %>
-    
+    <% end %>
   </div>
   <div class="grid grid-cols-3 gap-8 max-w-5xl w-full mx-auto">
     <%= image_tag "violin.jpg", class: "h-96 w-full object-cover" %>

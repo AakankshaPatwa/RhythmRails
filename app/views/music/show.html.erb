@@ -1,0 +1,20 @@
+<div class="min-h-screen bg-gray-900 py-8 px-4">
+  <div class="mx-auto" style="max-width: 1200px;">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <% @songs.each do |song| %>
+        <div class="bg-gray-800 rounded-lg overflow-hidden transition-transform hover:scale-105">
+          <%= image_tag(song.image, class: "w-full h-48 object-cover") %>
+          <div class="p-3">
+            <div class="flex justify-between items-center">
+              <div class="truncate">
+                <p class="text-white font-medium truncate"><%= song.title %></p>
+                <p class="text-gray-400 text-sm truncate"><%= song.artist.stage_name %></p>
+              </div>
+              <%= render "play", song: song %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
