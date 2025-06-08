@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-// import { post } from "@rails/request.js"
+import { post } from "@rails/request.js"
 
 // Connects to data-controller="music"
 export default class extends Controller {
@@ -60,20 +60,20 @@ export default class extends Controller {
     }
   }
 
-  // audioToggled(e) {
-  //   let newUrl = e.detail.audio_src
-  //   if (newUrl == this.urlValue) {
-  //     if (window.audio.paused) {
-  //       this.playTarget.classList.remove("hidden")
-  //       if (!this.pauseTarget.classList.contains("hidden")) {
-  //         this.pauseTarget.classList.add("hidden")
-  //       }
-  //     } else {
-  //       this.pauseTarget.classList.remove("hidden")
-  //       if (!this.playTarget.classList.contains("hidden")) {
-  //         this.playTarget.classList.add("hidden")
-  //       }
-  //     }
-  //   }
-  // }
+  audioToggled(e) {
+    let newUrl = e.detail.audio_src
+    if (newUrl == this.urlValue) {
+      if (window.audio.paused) {
+        this.playTarget.classList.remove("hidden")
+        if (!this.pauseTarget.classList.contains("hidden")) {
+          this.pauseTarget.classList.add("hidden")
+        }
+      } else {
+        this.pauseTarget.classList.remove("hidden")
+        if (!this.playTarget.classList.contains("hidden")) {
+          this.playTarget.classList.add("hidden")
+        }
+      }
+    }
+  }
 }

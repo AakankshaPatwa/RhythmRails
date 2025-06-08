@@ -1,4 +1,5 @@
 <div data-controller="music" data-music-url-value="<%= rails_blob_url(song.audio_file) %>"
+     data-music-audio-player-url-value="<%= audio_player_music_path(song_id: song.id) %>"
      data-action="audio-player-switched@window->music#audioChanged audio-player:toggled@window->music#audioToggled">
   <%= link_to "", data: { action: "music#toggle" } do %>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 fill-indigo-100 hover:fill-indigo-500" data-music-target="play">

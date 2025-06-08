@@ -16,10 +16,11 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  get "music", to: "music#show", as: :music
+  # get "music", to: "music#show", as: :music
 
-  resources :music, only: [:show], controller: :music
-
+  resource :music, only: [:show], controller: :music do
+    post "audio_player", to: "music#audio_player", on: :collection
+  end
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Spotify Rails" %></title>
+    <title><%= content_for(:title) || "Rhythm Rails" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -25,5 +25,7 @@
   <body class="bg-gradient-to-b from-blue-800 to-purple-300">
   <% render "layouts/alerts" %>
       <%= yield %>   
+      <div id="audio-player" class="fixed bottom-0 w-full">
+      </div>
   </body>
 </html>
