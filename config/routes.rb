@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get "music/show"
   devise_for :artists
 
@@ -14,13 +15,17 @@ Rails.application.routes.draw do
     resources :dashboard, to: "artists#dashboard"
   end
 
-  root "home#index"
-
-  # get "music", to: "music#show", as: :music
+  authenticated :user do
+    root 'music#show', as: :authenticated_user_root
+  end
 
   resource :music, only: [:show], controller: :music do
     post "audio_player", to: "music#audio_player", on: :collection
   end
+
+  root "home#index"
+
+  # get "music", to: "music#show", as: :music
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
