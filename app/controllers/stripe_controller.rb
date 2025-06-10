@@ -1,6 +1,6 @@
 class StripeController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:webhooks]
-  before_action :auth_webhook_request, only: [:webhooks]
+  # skip_before_action :verify_authenticity_token, only: [:webhooks]
+  # before_action :auth_webhook_request, only: [:webhooks]
 
   def account_session
     account_session = Stripe::AccountSession.create({
