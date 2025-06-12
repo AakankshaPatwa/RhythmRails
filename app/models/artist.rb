@@ -7,7 +7,7 @@ class Artist < ApplicationRecord
   has_many :songs
   after_create_commit :create_stripe_account
 
-  # enum :stripe_status, ["awaiting_onboarding", "payouts_enabled"]
+  enum :stripe_status, ["awaiting_onboarding", "payouts_enabled"]
 
   def create_stripe_account
     stripe_account = Stripe::Account.create()
