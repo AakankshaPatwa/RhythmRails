@@ -14,9 +14,16 @@
     <br/>
 
     <% if current_artist.payouts_enabled? %>
-      <div class="flex flex-col items-center justify-center h-56 w-1/2 bg-gray-100 rounded-lg shadow-lg pb-8">
-        <p> Your current balance ( Payouts happen daily ) </p>
-        <p class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-400"> <%= number_to_currency(@balance.available[0].amount / 100) %> </p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="flex flex-col items-center justify-center h-56 w-full bg-gray-100 rounded-lg shadow-lg pb-8">
+          <p> Your current balance ( Payouts happen daily ) </p>
+          <p class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-400"> <%= number_to_currency(@balance.available[0].amount.to_f / 100) %> </p>
+        </div>
+
+        <div class="flex flex-col items-center justify-center h-56 w-full bg-gray-100 rounded-lg shadow-lg pb-8">
+          <p> Your total streams </p>
+          <p class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-400"> <%= current_artist.songs.sum(&:streams_count) %> </p>
+        </div>
       </div>
     <% else %>
       <div data-controller="stripe-onboarding" data-stripe-onboarding-url-value="<%= onboarding_session_path %>" class="bg-gray-100"> 

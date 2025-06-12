@@ -5,6 +5,7 @@ class Artist < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :songs
+  has_many :streams, through: :songs
   after_create_commit :create_stripe_account
 
   enum :stripe_status, ["awaiting_onboarding", "payouts_enabled"]

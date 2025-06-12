@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_11_121749) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_12_191829) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -59,7 +59,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_121749) do
     t.integer "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "streams_count"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
+  end
+
+  create_table "streams", force: :cascade do |t|
+    t.integer "song_id", null: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "payed_out", default: false
+    t.index ["song_id"], name: "index_streams_on_song_id"
+    t.index ["user_id"], name: "index_streams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,4 +96,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_121749) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "songs", "artists"
+  add_foreign_key "streams", "songs"
+  add_foreign_key "streams", "users"
 end
