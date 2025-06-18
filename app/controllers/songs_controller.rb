@@ -4,7 +4,7 @@ class SongsController < ApplicationController
 
   # GET /songs or /songs.json
   def index
-    @songs = current_artist.songs.all
+    @songs = current_artist.songs.with_attached_image.with_attached_audio_file
   end
 
   # GET /songs/1 or /songs/1.json
@@ -59,13 +59,12 @@ class SongsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = current_artist.songs.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
+    def set_song
+      @song = current_artist.songs.find(params[:id])
+    end
+    
     def song_params
-      params.expect(song: [ :title, :image, :audio_file, :artist_id ])
+      params.require(:song).permit(:title, :image, :audio_file)
     end
 end
